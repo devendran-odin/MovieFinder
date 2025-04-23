@@ -8,7 +8,7 @@ const TopRatedMovie = () => {
   const fetchTopRatedMovies = async () => {
     try {
       let allMovies = [];
-      const totalPages = 3;
+      const totalPages = 5;
 
       for (let page = 1; page <= totalPages; page++) {
         const response = await axios.get(
@@ -40,6 +40,7 @@ const TopRatedMovie = () => {
           return (
             <MovieCard
               key={movie.id}
+              id={movie.id}
               movieName={movie.title}
               movieOverview={movie.overview}
               moviePosterPath={movie.poster_path}

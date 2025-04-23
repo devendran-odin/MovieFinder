@@ -7,7 +7,7 @@ const PopularMovie = () => {
   const fetchPopular = async () => {
     try {
       let allMovies = [];
-      const totalPages = 3;
+      const totalPages = 6;
 
       for (let page = 1; page <= totalPages; page++) {
         const response = await axios.get(
@@ -36,12 +36,13 @@ const PopularMovie = () => {
 
   return (
     <div className="mx-auto max-w-full">
-      <h1 className="text-4xl text-[#FFF0DC] mt-1 mb-2">Latest Movies</h1>
+      <h1 className="text-4xl text-[#FFF0DC] mt-1 mb-2">Tamil Movies</h1>
       <div className="text-[#FFF0DC] mt-4 flex flex-wrap gap-6 md:gap-9 items-center justify-start ">
         {popularMovies.map((movie) => {
           return (
             <MovieCard
               key={movie.id}
+              id={movie.id}
               movieName={movie.title}
               movieOverview={movie.overview}
               moviePosterPath={movie.poster_path}

@@ -1,22 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-
-const fetchMovies = (movieName) => {
-  console.log(movieName);
-};
+import { useNavigate } from "react-router-dom";
 
 const SearchMovie = () => {
   const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     let trimmedValue = inputValue.trim();
-    if (trimmedValue.length == 0) {
+    if (!trimmedValue) {
       toast.error("Invalid movie name. Check spelling.");
     } else {
-      setInputValue(trimmedValue);
-      fetchMovies(trimmedValue);
+      navigate(`/search?query=${encodeURIComponent(trimmedValue)}`);
     }
   };
 
@@ -26,7 +23,6 @@ const SearchMovie = () => {
 
   return (
     <>
-      <h1 className="text-[#F0BB78] text-4xl font-bold">MovieVerse</h1>
       <div className="py-10">
         <label htmlFor="input-text" className="text-[#FFF0DC] text-lg">
           {" "}
