@@ -1,51 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import MovieCard from "./MovieCard";
-import axios from "axios";
+import useMovieFetch from "./lib/useMovieFetch";
 
 const TrendingMovie = () => {
-  const [trendingMovies, setTrendingMovies] = useState([]);
-  const fetchTrendingMovies = async () => {
-    try {
-      let allMovies = [];
-      const totalPages = 3;
-      for (let page = 1; page <= totalPages; page++) {
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/trending/all/day?api_key=${
-            import.meta.env.VITE_API_KEY
-          }&language=en-US&page=${page}`
-        );
-        allMovies = [...allMovies, ...response.data.results];
-      }
-      setTrendingMovies(allMovies);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const { movies: trendingMovies, loading, error } = useMovieFetch(
+    "trending/all/day?language=en-US",
+    3
+  );
 
-  useEffect(() => {
-    fetchTrendingMovies();
-  }, []);
+  if (loading) return (
+    <div className="text-[#FFF0DC]">
+    <div className="flex-col gap-4 w-full flex items-center justify-center mt-10 md:mt-16">
+      <div
+        className="w-16 md:w-20 h-16 md:h-20 border-4 border-transparent text-[#FFF0DC] text-2xl md:text-4xl animate-spin flex items-center justify-center border-t-[#FFF0DC] rounded-full"
+      >
+        <div
+          className="w-12 md:w-16 h-12 md:h-16 border-4 border-transparent text-[#F0BB78] text-lg md:text-2xl animate-spin flex items-center justify-center border-t-[#F0BB78] rounded-full"
+        ></div>
+      </div>
+    </div>
+    </div>
+    )
+  if (error) return <div className="text-[#FFF0DC]">Error: {error}</div>;
 
   return (
     <div className="mx-auto max-w-full">
       <h1 className="text-4xl text-[#FFF0DC] mt-1 mb-2">Trending Movies</h1>
       <div className="text-[#FFF0DC] mt-4 flex flex-wrap gap-6 md:gap-9 items-center justify-start ">
-        {trendingMovies.map((movie) => {
-          return (
-            <MovieCard
-              key={movie.id}
-              id={movie.id}
-              movieName={movie.title || movie.name}
-              movieOverview={movie.overview}
-              moviePosterPath={movie.poster_path}
-              movieReleaseDate={
-                movie.release_date ? movie.release_date : "unknown"
-              }
-              movieRating={movie.vote_average}
-              movieReviews={movie.vote_count}
-            />
-          );
-        })}
+        {trendingMovies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            movieName={movie.title || movie.name}
+            movieOverview={movie.overview}
+            moviePosterPath={movie.poster_path}
+            movieReleaseDate={movie.release_date || "unknown"}
+            movieRating={movie.vote_average}
+            movieReviews={movie.vote_count}
+          />
+        ))}
       </div>
     </div>
   );

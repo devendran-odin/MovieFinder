@@ -21,7 +21,6 @@ const MovieDetail = () => {
           import.meta.env.VITE_API_KEY
         }`
       );
-      console.log(response.data);
       setMovie(response.data);
       setLoading(false);
     } catch (err) {
@@ -33,9 +32,19 @@ const MovieDetail = () => {
     fetchMovie();
   }, [id]);
 
-  if (loading) {
-    return <div className="text-white text-center mt-20">Loading...</div>;
-  }
+  if (loading) return (
+    <div className="text-[#FFF0DC]">
+    <div className="flex-col gap-4 w-full flex items-center justify-center mt-10 md:mt-16">
+      <div
+        className="w-16 md:w-20 h-16 md:h-20 border-4 border-transparent text-[#FFF0DC] text-2xl md:text-4xl animate-spin flex items-center justify-center border-t-[#FFF0DC] rounded-full"
+      >
+        <div
+          className="w-12 md:w-16 h-12 md:h-16 border-4 border-transparent text-[#F0BB78] text-lg md:text-2xl animate-spin flex items-center justify-center border-t-[#F0BB78] rounded-full"
+        ></div>
+      </div>
+    </div>
+    </div>
+    )
 
   return (
     <>

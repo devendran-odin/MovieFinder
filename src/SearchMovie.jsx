@@ -23,29 +23,28 @@ const SearchMovie = () => {
 
   return (
     <>
-      <div className="py-10">
-        <label htmlFor="input-text" className="text-[#FFF0DC] text-lg">
-          {" "}
-          Enter Movie name to search
-        </label>
-        <br></br>
-        <div>
-          <input
-            type="text"
-            name=""
-            value={inputValue}
-            onChange={handleChange}
-            id="input-text"
-            placeholder="God Father"
-            className="bg-[#FFF0DC] py-2.5 px-3 w-1/2 my-2  outline-[#F0BB78]"
-          />
-          <button
-            onClick={handleSubmit}
-            className="bg-[#F0BB78] text-[#543A14] mx-5  px-6 cursor-pointer font-semibold py-2.5"
-          >
-            Search
-          </button>
-        </div>
+      <div className="py-6 md:py-10 px-2 md:px-1">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="input-text" className="text-[#FFF0DC] text-base block mb-2">
+            Enter Movie name to search
+          </label>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+              id="input-text"
+              placeholder="eg.. Avengers"
+              className="bg-[#FFF0DC] py-2.5 px-3 w-full sm:w-1/2 outline-[#F0BB78]"
+            />
+            <button
+              type="submit"
+              className="bg-[#F0BB78] text-[#543A14] hover:bg-[#fad29b] px-4 cursor-pointer font-semibold py-2.5 whitespace-nowrap"
+            >
+              Search
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );

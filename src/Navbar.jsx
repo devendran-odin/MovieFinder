@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import movieLogo from "./assets/movieLogo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -9,22 +10,17 @@ const Navbar = () => {
 
   return (
     <nav className="">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 md:px-0 md:py-4 ">
         <Link
           to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8"
-            alt="logo"
-          />
-          <span
-            className="self-center text-2xl font-semibold whitespace-nowrap"
-            style={{ color: "#FFF0DC" }}
-          >
-            MovieVerse
-          </span>
+          <div className="flex">
+            <img src={movieLogo} className="h-9" alt="logo" />
+            <span className="self-center text-[27px] pl-2 text-[#F0BB78] font-semibold whitespace-nowrap">
+              MovieVerse
+            </span>
+          </div>
         </Link>
         <button
           onClick={toggleMenu}
@@ -58,8 +54,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/tamil"
-                className="block py-2 px-3 rounded-sm md:bg-transparent hover:underline md:p-0"
-                style={{ color: "#FFF0DC" }}
+                className="block py-2 px-3 rounded-sm md:bg-transparent hover:underline md:p-0 text-[#FFF0DC]  hover:text-[#F0BB78]"
               >
                 Tamil
               </Link>
@@ -67,8 +62,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/indian"
-                className="block py-2 px-3 rounded-sm hover:underline  md:border-0 md:p-0"
-                style={{ color: "#FFF0DC" }}
+                className="block py-2 px-3 rounded-sm hover:underline  md:border-0 md:p-0 text-[#FFF0DC]  hover:text-[#F0BB78]"
               >
                 Indian
               </Link>
@@ -76,8 +70,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/trending"
-                className="block py-2 px-3 rounded-sm hover:underline  md:border-0 md:p-0"
-                style={{ color: "#FFF0DC" }}
+                className="block py-2 px-3 rounded-sm hover:underline  md:border-0 md:p-0 text-[#FFF0DC]  hover:text-[#F0BB78]"
               >
                 Trending
               </Link>
@@ -85,8 +78,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/latest"
-                className="block py-2 px-3 rounded-sm hover:underline  md:border-0 md:p-0"
-                style={{ color: "#FFF0DC" }}
+                className="block py-2 px-3 rounded-sm hover:underline  md:border-0 md:p-0 text-[#FFF0DC]  hover:text-[#F0BB78]"
               >
                 Latest
               </Link>

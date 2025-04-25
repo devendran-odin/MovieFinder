@@ -26,20 +26,6 @@ function App() {
           }}
         />
 
-        {/* 
-        navbar -> tamil movies, popular indian movies(good movies), trending
-        add page count-3-4 for all pages
-        search functionality
-        Individual Poge (trailer link by adding youtube url, IMDB)
-        Website Logo
-        update readme and give attribution to TMDB
-        make it responsive
-         */}
-        {/* <Navbar />
-        <SearchMovie />
-        <PopularMovie />
-        <TrendingMovie />
-        <TopRatedMovie /> */}
         <Routes>
           <Route
             path="/"
